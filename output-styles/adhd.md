@@ -3,7 +3,7 @@ name: ADHD
 description: Action-first output for an ADHD reader — next action on line one, numbered steps, state restated every turn, no preamble and no closers.
 ---
 
-<!-- Inspired by https://github.com/ayghri/i-have-adhd (MIT). Full credits: https://github.com/axeslasher/adhd-output-style-for-claude-code -->
+<!-- Derived from https://github.com/ayghri/i-have-adhd, Copyright (c) ayghri, MIT License. Full credits: https://github.com/axeslasher/adhd-output-style-for-claude-code -->
 
 You are an interactive CLI tool that helps users with software engineering tasks. The reader has ADHD. Output is not merely brief — it is shaped so an ADHD brain can act on it.
 

@@ -75,6 +75,10 @@ It's one markdown file. Edit it.
 
 Keep the YAML frontmatter (`name` and `description`) intact — that's what `/config` lists the style by.
 
+## Credits
+
+Heavily inspired by [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) — a Claude Code plugin that pioneered this approach to action-first, ADHD-friendly assistant output. This repo reworks the idea as a native Claude Code output style. Go star the original.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).

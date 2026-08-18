@@ -12,15 +12,21 @@ I've been struggling with the output of the 5-gen models from Anthropic. The cod
 
 ## Before / after
 
+You ask why one test suite reads a stale environment variable.
+
 **Default**
 
-> Great question! Let's think about this. Your auth flow has a few moving pieces, so I'll start by looking at how tokens are currently issued, then we can decide on the best approach. Let me know if you'd like me to dig deeper into any part of this.
+> I'd be happy to help with that! Before we dive in, it's worth understanding how your test runner resolves environment variables, since that's a common source of this kind of failure. There are a few possibilities here: the env file may not be loading at all, the variable may be shadowed by something already exported in your shell, or the runner may be holding a cached value from a previous run. I'd suggest adding some logging first so we can see what's actually being read, and from there we can narrow things down. Let me know how that goes!
 
 **ADHD**
 
-> Run `npm install jsonwebtoken`, then edit `src/auth.ts:42`.
+> `.env.test` never loads; `vitest.config.ts` has no `setupFiles` entry.
 >
-> Step 3 of 5 done: schema updated. Next: backfill the new column.
+> 1. Add `setupFiles: ['./test/setup.ts']` to `vitest.config.ts`
+> 2. Put `import 'dotenv/config'` at the top of `test/setup.ts`
+> 3. Run `npx vitest run billing.spec.ts`
+>
+> About 2 minutes. Step 3 of 4 done on the test-config cleanup; next is deleting the duplicate `dotenv` call in `vite.config.ts`.
 
 ## How it stays in effect
 
@@ -85,20 +91,15 @@ Find the **Output style** setting and select **ADHD**. To switch back, open `/co
 
 ## What it actually enforces
 
-Ten rules, each traced back to a fact about how ADHD brains read:
+The file starts from five facts about how an ADHD brain reads, then derives the rules from them. When a situation isn't covered by a rule, Claude is told to reason from the facts instead of pattern-matching the examples:
 
-| Rule | Why |
+| The fact | What it forces |
 |---|---|
-| Lead with the next action | Starting is the hardest step |
-| Number multi-step tasks | Working memory is small |
-| End with one concrete next action | Knowing ≠ doing |
-| Suppress tangents | One thread at a time survives |
-| Restate state every turn | Nothing off-screen is retained |
-| Specific time estimates | "Some work" and "a few hours" feel identical |
-| Make completed work visible | Dopamine is scarce; buried wins don't register |
-| Matter-of-fact tone for errors | Alarm words cost focus |
-| Cap lists at five items | Five ranked beats ten unranked |
-| No preamble, no recap, no closers | Every filler line pushes the answer off-screen |
+| Working memory is small; anything off-screen is gone | State restated every turn; lists capped at five; tangents held until the end |
+| Knowing the answer is not doing the answer | Every reply ends on one action doable in under two minutes |
+| Starting is the hardest step | The answer goes on line one; multi-step work gets numbered |
+| "A bit of work" and "a few hours" register identically | Estimates in concrete units, and whose time it is |
+| Dopamine is scarce; buried wins don't register | Finished work stated plainly, with the command that proves it |
 
 Plus explicit escape hatches; the rules bend for "explain this to me," destructive actions, debug spirals, real ambiguity, and "what are my options."
 
@@ -114,7 +115,9 @@ Keep the YAML frontmatter (`name` and `description`) intact; that's what `/confi
 
 ## Credits
 
-Heavily inspired by [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) (a Claude Code plugin that pioneered this approach to action-first, ADHD-friendly assistant output). This repo reworks the idea as a native Claude Code output style. Go star the original.
+Built on [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) by ayghri (MIT), a Claude Code plugin that worked out this approach to action-first, ADHD-friendly assistant output. Their SKILL.md was the starting point for `adhd.md`; some rule names and examples carry over from it. What changed here: it runs as a native output style rather than an invoked skill (see [How it stays in effect](#how-it-stays-in-effect)), the rules are derived from five stated facts about ADHD reading, and there are explicit carve-outs for agentic work and for when the rules should bend.
+
+Go star the original.
 
 ## License
 

@@ -16,6 +16,37 @@ It changes how Claude *talks to you*. It does not change how Claude writes code,
 >
 > Step 3 of 5 done: schema updated. Next: backfill the new column.
 
+## Why an output style?
+
+You can just *ask* Claude to be concise and lead with the action. It works for about three turns.
+
+An output style is different in one way that matters: it lives in the system prompt and is re-asserted every few turns for the entire session. It doesn't fade as the conversation grows, it doesn't get buried under the last twenty tool results, and it survives compaction. Formatting is exactly the kind of instruction that decays first — it isn't part of the task, so it's the first thing crowded out.
+
+```mermaid
+flowchart TB
+    subgraph ask ["Ask in chat: 'be concise' — said once"]
+        direction LR
+        O1["turn 1<br/>on target"] --> O2["turn 6<br/>drifting"] --> O3["turn 20<br/>back to default"]
+    end
+
+    subgraph os ["Output style — re-asserted every few turns"]
+        direction LR
+        S1["turn 1<br/>on target"] --> S2["turn 6<br/>on target"] --> S3["turn 20<br/>on target"]
+    end
+
+    ask ~~~ os
+```
+
+How the options compare:
+
+| Approach | Scope | Holds up over a long session? |
+|---|---|---|
+| Ask in chat | This conversation | No — decays within a few turns |
+| `CLAUDE.md` note | One project | Partly — but it competes with everything else in the file, and formatting loses |
+| **Output style** | Every project, every session | Yes — reinforced for the whole session |
+
+The other reason: it's one toggle. `/config` → **Default** and you're back to normal, with nothing to un-edit.
+
 ## Install
 
 **For all your projects:**

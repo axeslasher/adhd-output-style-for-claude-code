@@ -77,6 +77,13 @@ curl -o .claude/output-styles/adhd.md \
   https://raw.githubusercontent.com/axeslasher/adhd-output-style-for-claude-code/main/output-styles/adhd.md
 ```
 
+**Pinned to a release** (so an upstream rule change never surprises you):
+
+```bash
+curl -o ~/.claude/output-styles/adhd.md \
+  https://raw.githubusercontent.com/axeslasher/adhd-output-style-for-claude-code/v1.0.0/output-styles/adhd.md
+```
+
 Or just copy [`output-styles/adhd.md`](output-styles/adhd.md) into either directory by hand.
 
 ## Use

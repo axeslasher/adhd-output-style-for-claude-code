@@ -1,6 +1,6 @@
 # ADHD output style for Claude Code
 
-An [output style](https://docs.claude.com/en/docs/claude-code/output-styles) that reshapes Claude Code's responses for an ADHD reader: the next action on line one, numbered steps, state restated every turn, no preamble and no closers.
+An output style that reshapes Claude Code's responses for an ADHD reader: the next action on line one, numbered steps, state restated every turn, no preamble and no closers.
 
 It changes how Claude *talks to you*. It does not change how Claude writes code, comments, commit messages, or PR bodies — those keep their own conventions.
 
@@ -38,13 +38,13 @@ Or just copy [`output-styles/adhd.md`](output-styles/adhd.md) into either direct
 
 ## Use
 
-In Claude Code:
+In Claude Code, run:
 
 ```
-/output-style
+/config
 ```
 
-Pick **ADHD** from the list. To switch back, run `/output-style` again and pick **Default**.
+Find the **Output style** setting and select **ADHD**. To switch back, open `/config` again and pick **Default**.
 
 ## What it actually enforces
 
@@ -73,7 +73,7 @@ It's one markdown file. Edit it.
 - **Want it to still ask before acting?** Delete the **Do, don't offer** bullet under *Agentic work*.
 - **Different list cap?** Change the number in rule 9.
 
-Keep the YAML frontmatter (`name` and `description`) intact — that's what `/output-style` reads.
+Keep the YAML frontmatter (`name` and `description`) intact — that's what `/config` lists the style by.
 
 ## License
 

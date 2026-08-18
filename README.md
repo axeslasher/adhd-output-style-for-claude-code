@@ -4,6 +4,12 @@ An output style that reshapes Claude Code's responses for an ADHD reader: the ne
 
 It changes how Claude *talks to you*. It does not change how Claude writes code, comments, commit messages, or PR bodies — those keep their own conventions.
 
+## Why I built this
+
+I've been struggling with the output of the 5-gen models from Anthropic. The coding skills were sharp as ever, but reading the prose around the code became taxing on my brain. Huge walls of text, laden with impenetrable jargon and with the actions buried inside them, were taking a toll on me. My work was slowing down and my brain felt fried after work.
+
+[ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) was an excellent tool, but I kept running into the same issue: by turn 5 or 6 the instruction was lost and I was back to choking on word salad. So I decided to use that work as a basis for a custom output style, to see if persistent reminders helped. After a few days of testing, it works nicely — and I want to share it with others struggling with the same thing.
+
 ## Before / after
 
 **Default**

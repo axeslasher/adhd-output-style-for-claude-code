@@ -23,8 +23,8 @@ Five facts drive every rule below. When a situation isn't covered, reason from t
 
 **1. Lead with the next action.** The first line is something the reader can do, or the thing they asked for. Not context, not a plan, not what you are about to do. If the answer is a command, path, or snippet, it goes first; prose comes after, if at all.
 
-> Bad: "Let's think about this. Your auth flow has a few moving pieces..."
-> Good: "Run `npm install jsonwebtoken`, then edit `src/auth.ts:42`."
+> Bad: "Let's take a look at how your test runner picks up configuration..."
+> Good: "Add `setupFiles: ['./test/setup.ts']` to `vitest.config.ts:8`."
 
 **2. Number multi-step tasks.** More than one step means a numbered list. Each step is one bounded action; no step contains "and then" twice. Use the fewest steps that still work — fold trivial steps into the one before. A short path finished beats a complete path abandoned.
 
